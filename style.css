@@ -1,0 +1,222 @@
+/* *{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    font-family: Arial, sans-serif;
+    background-color: #0f172a;
+}
+
+
+
+
+.weather-app {
+    text-align: center;
+    margin-top: 50px;
+
+}
+
+button i{
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+input,button {
+    padding: 10px;
+    margin: 5px;
+    font-size: 16px;
+    border-radius: 10px;
+    border: 2px solid #38bdf8;
+    outline: none;
+}
+
+button {
+    background-color: #38bdf8;
+    color: white;
+    cursor: pointer;
+}
+button:hover {
+    background-color: #0ea5e9;
+}
+#cityName {
+    font-size: 24px;
+    color: #38bdf8;
+    margin-top: 10px;
+}
+#temp {
+    font-size: 48px;
+    color: #38bdf8;
+    margin-top: 10px;
+}
+#des {
+    font-size: 20px;
+    color: #38bdf8;
+    margin-top: 10px;
+}
+
+#wind{
+    font-size: 20px;
+    color: #38bdf8;
+    margin-top: 10px;
+}
+
+img{
+    width: 100px;
+}
+
+.show {
+    color: white;
+    font-size: 20px;
+} */
+
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+/* Body */
+body {
+  background: #0f172a;
+  color: #e2e8f0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+/* App Container */
+.weather-app {
+  width: 100%;
+  max-width: 350px;
+  background: #1e293b;
+  padding: 20px;
+  border-radius: 20px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+  text-align: center;
+}
+
+/* Input */
+#city {
+  width: 100%;
+  padding: 12px;
+  border-radius: 12px;
+  border: none;
+  outline: none;
+  margin-bottom: 12px;
+  background: #0f172a;
+  color: #fff;
+  font-size: 14px;
+}
+
+/* Buttons */
+button {
+  width: 100%;
+  padding: 10px;
+  margin-top: 8px;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: 0.3s;
+}
+
+/* Search Button */
+#search {
+  background: #38bdf8;
+  color: #0f172a;
+}
+
+#search:hover {
+  background: #0ea5e9;
+}
+
+/* Location Button */
+#location {
+  background: transparent;
+  border: 1px solid #38bdf8;
+  color: #38bdf8;
+}
+
+#location:hover {
+  background: #38bdf8;
+  color: #0f172a;
+}
+
+/* Result Box */
+.result {
+  margin-top: 20px;
+  padding: 15px;
+  border-radius: 15px;
+  background: #0f172a;
+  transition: background 0.5s ease;
+}
+
+/* Weather Icon */
+#icon {
+  width: 80px;
+  margin: 10px auto;
+}
+
+/* Text */
+#cityName {
+  font-size: 22px;
+  font-weight: 600;
+  margin-top: 10px;
+}
+
+#temp {
+  font-size: 18px;
+  margin-top: 5px;
+  color: #38bdf8;
+}
+
+#des {
+  margin-top: 5px;
+  font-size: 14px;
+  color: #2e0b70;
+}
+
+#wind {
+  margin-top: 5px;
+  font-size: 14px;
+  color: #22c55e;
+}
+
+/* Loading */
+#loading {
+  display: none;
+  width: 40px;
+  height: 40px;
+  border: 4px solid #38bdf8;
+  border-top: 4px solid #1e293b;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  /* font-size: 16px;
+  margin-bottom: 10px;
+  color: #38bdf8; */
+}
+
+.loading-state {
+  opacity: 0.1;
+  filter: blur(2px);
+  transition: 0.3s;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Responsive */
+@media (max-width: 400px) {
+  .weather-app {
+    margin: 10px;
+    padding: 15px;
+  }
+}

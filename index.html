@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Weather App</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+      integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+  </head>
+  <body>
+    <div class="weather-app">
+      <input type="text" id="city" placeholder="Enter City Name" />
+      <button id="location">
+        <i class="fa-solid fa-map-pin" style="color: rgb(226, 17, 17)"></i>My
+        Location
+      </button>
+      <button id="search">Search</button>
+
+      <div class="result">
+        <div id="loading" style="display:none;"></div>
+        <img id="icon" />
+        <h2 id="cityName"></h2>
+        <p id="temp"></p>
+        <p id="des"></p>
+        <p id="wind"></p>
+      </div>
+    </div>
+    <script src="app.js"></script>
+  </body>
+</html>
