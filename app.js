@@ -6,6 +6,7 @@ const locationBtn = document.querySelector("#location");
 
 const loading = document.querySelector("#loading");
 const resultBox = document.querySelector(".result");
+const errorMsg = document.querySelector("#errorMsg");
 
 function showLoading() {
   resultBox.classList.add("loading-state");
@@ -24,6 +25,17 @@ function clearUI() {
   document.querySelector("#wind").textContent = "";
   document.querySelector("#icon").src = "";
   document.querySelector("#icon").alt = "";
+  document.querySelector(".result").style.background = "";
+}
+
+// validation function
+function checkCityInput(city) {
+  if (!city || city.trim() === "") {
+    errorMsg.innerText = "Please enter a city name!";
+    clearUI();
+    return false;
+  }
+  return true;
 }
 
 // Function to update the UI with weather data
@@ -71,8 +83,13 @@ function updateUI(data) {
     resultBox.style.color = "#0f172a"; // dark text
     des.style.color = "orange";
     wind.style.color = "yellow";
+  }
+  if (["clear"].includes(weatherMain)) {
+    resultBox.style.color = "#0f172a"; // dark text
+    des.style.color = "black";
+    wind.style.color = "yellow";
   } else {
-    resultBox.style.color = ""; // light text
+    resultBox.style.color = ""; // default text
   }
 
   resultBox.style.background = weatherThemes[weatherMain] || "#0f172a";
@@ -96,7 +113,7 @@ function fetchWeatherByCity(city) {
     })
     .catch(() => {
       hideLoading();
-      alert("An error occurred while fetching weather data. Please try again.");
+      alert("Network error,please try again.");
     });
 }
 
@@ -120,13 +137,15 @@ function fetchWeatherByLocation(lat, lon) {
     })
     .catch(() => {
       hideLoading();
-      alert("An error occurred while fetching weather data. Please try again.");
+      alert("Network error,please try again.");
     });
 }
 
 // Event listener for search button
 searchBtn.addEventListener("click", () => {
   const cityInput = document.querySelector("#city").value.trim();
+  const city = cityInput;
+  if (!checkCityInput(city)) return;
   fetchWeatherByCity(cityInput);
 });
 
@@ -143,15 +162,30 @@ document.querySelector("#city").addEventListener("keypress", (e) => {
 
 locationBtn.addEventListener("click", () => {
   document.querySelector("#city").value = "";
+  errorMsg.innerText = "";
+
+  if (!navigator.onLine) {
+    alert("You are offline, please connect to your network.");
+    return;
+  }
+
   if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition((position) => {
-      const lat = position.coords.latitude;
-      const lon = position.coords.longitude;
-      fetchWeatherByLocation(lat, lon);
-    });
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        const lat = position.coords.latitude;
+        const lon = position.coords.longitude;
+        fetchWeatherByLocation(lat, lon);
+      },
+      (error) => {
+        alert("unable to get location. Please allow permission or try again.");
+      },
+    );
   } else {
     alert("Geolocation is not supported by this browser.");
   }
 });
 
-// ami holam gian
+// auto remove error while typing
+document.querySelector("#city").addEventListener("input", () => {
+  errorMsg.innerText = "";
+});
